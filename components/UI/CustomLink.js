@@ -2,6 +2,7 @@ import Link from "next/link";
 import classes from "./CustomLink.module.css";
 
 const CustomLink = ({ children, href, type }) => {
+  console.log(href);
   let className;
 
   if (type === "primary") {
