@@ -14,7 +14,9 @@ const CardsSetion = ({ services }) => {
         {services.map((service) => {
           return (
             <Card
+              // service={service} -- AKO PROSLEDJUJEMO CITAV OBJEKAT
               key={service.id}
+              // KEY SE KORISTI KADA IMAMO NIZ
               id={service.id}
               title={service.attributes.serviceTitle}
               description={service.attributes.serviceDescription}

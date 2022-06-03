@@ -1,14 +1,18 @@
 import CustomLink from "../UI/CustomLink";
 import classes from "./Hero.module.css";
 
-const Hero = ({ title, description, linkText, children }) => {
+const Hero = ({ heroData }) => {
+  // DOBAR PRIMER ZA DYNAMIC COMPONENT
+  console.log(heroData);
+  const { heroTitle, heroDescription, buttonText, buttonLink } =
+    heroData.attributes.Hero[0];
   return (
     <div className={`${classes.Hero} container`}>
       <div>
-        {children}
-        <p className={`large-p ${classes.Paragraph}`}>{description}</p>
-        <CustomLink type="primary" href="/">
-          {linkText}
+        <h1>{heroTitle}</h1>
+        <p className={`large-p ${classes.Paragraph}`}>{heroDescription}</p>
+        <CustomLink type="primary" href={buttonLink}>
+          {buttonText}
         </CustomLink>
         <div className={classes.Treatments}>
           <p className="large-p">Popular Treatments</p>

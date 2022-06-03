@@ -1,37 +1,44 @@
 import Hero from "../components/Layout/Hero";
 import CardsSection from "../components/Layout/CardsSection";
 import Slider from "../components/Layout/Slider";
+import { client } from "../utils/utils";
+import Form from "../components/Layout/Form";
 
-export default function Home({ services, testimonials }) {
+export default function Home({ services, testimonials, heroData, formConfig }) {
+  // CONSOLE LOG DATA TO CHECK IF EXISTS
+  // console.log(services)
   return (
     <>
-      <Hero
-        description="Nulla tempus ipsum sed vehicula feugiat. Nunc pretium metus ac porta pulvinar."
-        linkText="explore treatments"
-      >
-        <h1>
-          PUT YOUR WELLNESS <br /> IN GOOD HANDS
-        </h1>
-      </Hero>
+      <Hero heroData={heroData}></Hero>
       <CardsSection services={services} />
-      <Slider testimonials={testimonials} />
+      {/* <Slider testimonials={testimonials} /> */}
+      <Form formConfig={formConfig} />
+      {/* <MojaComponente services={services}></MojaComponente> */}
     </>
   );
 }
 
 export async function getStaticProps() {
-  const response = await fetch("http://localhost:1337/api/services?populate=*");
-  const { data } = await response.json();
-
-  const testimonialsResponse = await fetch(
+  const { data: services } = await client.request(
+    "http://localhost:1337/api/services?populate=*"
+  );
+  const { data: heroData } = await client.request(
+    "http://localhost:1337/api/home-page?populate=*"
+  );
+  const { data: testimonials } = await client.request(
     "http://localhost:1337/api/testimonials"
   );
-  const { data: testimonials } = await testimonialsResponse.json();
+
+  const { data: formConfig } = await client.request(
+    "http://localhost:1337/api/form-datas?populate=*"
+  );
 
   return {
     props: {
-      services: data,
+      services,
       testimonials,
+      heroData,
+      formConfig,
     },
   };
 }

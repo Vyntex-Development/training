@@ -4,6 +4,8 @@ import Image from "next/image";
 import CustomLink from "../UI/CustomLink";
 
 const Card = ({ title, description, image, id }) => {
+  // u slucaju da je prosledjen citav objekat
+  // const { title, description, image, id }= service;
   return (
     <div className={classes.Card}>
       <div className={classes.CardImageWrapper}>

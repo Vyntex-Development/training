@@ -2,8 +2,6 @@ import AwesomeSlider from "react-awesome-slider";
 import "react-awesome-slider/dist/styles.css";
 
 const Slider = ({ testimonials }) => {
-  console.log(testimonials);
-
   return (
     <div className="container">
       <AwesomeSlider>
